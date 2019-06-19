@@ -26,7 +26,7 @@ class App extends Component {
           >
             Learn React
           </a>
-          <p>CloudTrail Test</p>
+          <p>CloudTrail Test and Notification Test</p>
         </header>
       </div>
     );

@@ -1,0 +1,19 @@
+{
+    "workdev": {
+        "awscloudformation": {
+            "AuthRoleName": "authcra-workdev-20190619130948-authRole",
+            "UnauthRoleArn": "arn:aws:iam::070277303818:role/authcra-workdev-20190619130948-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::070277303818:role/authcra-workdev-20190619130948-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "authcra-workdev-20190619130948-deployment",
+            "UnauthRoleName": "authcra-workdev-20190619130948-unauthRole",
+            "StackName": "authcra-workdev-20190619130948",
+            "StackId": "arn:aws:cloudformation:us-east-2:070277303818:stack/authcra-workdev-20190619130948/22909180-928b-11e9-8c2b-069569a529ae"
+        },
+        "categories": {
+            "auth": {
+                "cognitocf0c6096": {}
+            }
+        }
+    }
+}

@@ -18,9 +18,6 @@ Parameters:
               
   allowUnauthenticatedIdentities:
     Type: String
-            
-  thirdPartyAuth:
-    Type: String
           
   lambdaLogPolicy:
     Type: String
@@ -91,6 +88,9 @@ Parameters:
   userpoolClientRefreshTokenValidity:
     Type: Number
               
+  userpoolClientWriteAttributes:
+    Type: CommaDelimitedList
+            
   userpoolClientReadAttributes:
     Type: CommaDelimitedList
       
@@ -116,6 +116,9 @@ Parameters:
     Type: String
               
   userpoolClientSetAttributes:
+    Type: String
+            
+  thirdPartyAuth:
     Type: String
           
   useDefault:
@@ -166,8 +169,10 @@ Resources:
   # Created upon user selection
   # Depends on SNS Role for Arn if MFA is enabled
     Type: AWS::Cognito::UserPool
+    UpdateReplacePolicy: Retain
     Properties:
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
+      
       Schema: 
         
         -
@@ -175,6 +180,7 @@ Resources:
           Required: true
           Mutable: true
         
+      
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
@@ -189,6 +195,7 @@ Resources:
           RequireNumbers: true
           RequireSymbols: true
           RequireUppercase: true
+          
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration: 
@@ -258,7 +265,7 @@ Resources:
             - '       response.send(event, context, response.SUCCESS, {''appSecret'': res.UserPoolClient.ClientSecret});'   
             - '     })'
             - '     .catch((err) => {'
-            - '       response.send(event, context, response.FAILURE, {err});'
+            - '       response.send(event, context, response.FAILED, {err});'
             - '     });'
             - ' }'
             - '};'
@@ -319,6 +326,11 @@ Resources:
       userpoolId: !Ref UserPool
     DependsOn: UserPoolClientLogPolicy
   
+
+  
+  
+
+  
     
   # BEGIN IDENTITY POOL RESOURCES
   
@@ -366,6 +378,8 @@ Outputs :
     Value: !GetAtt IdentityPool.Name 
   
   
+  
+  
   UserPoolId:
     Value: !Ref 'UserPool'
     Description:  Id for the user pool
@@ -383,5 +397,6 @@ Outputs :
    
    
   
+   
    
   

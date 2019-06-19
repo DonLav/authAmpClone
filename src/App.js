@@ -3,8 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Analytics } from 'aws-amplify';//analytics
+import awsconfig from './aws-exports'; //analytics
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
+Amplify.configure(awsconfig);//analytics
 
 class App extends Component {
   render() {

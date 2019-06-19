@@ -8,6 +8,7 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 Amplify.configure(awsconfig);//analytics
 
+
 class App extends Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <p>CloudTrail Test</p>
         </header>
       </div>
     );
